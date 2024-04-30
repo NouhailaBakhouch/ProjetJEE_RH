@@ -1,7 +1,6 @@
-package springDataAppdao;
+package springDataApp.dao;
 
-import java.sql.Date;
-
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,17 +13,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@DiscriminatorValue(value = "Employee")
 
-public class Employee {
+public class Employee extends Personne{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	
-	private int id;
-    private String prenom;
-    private String nom;
-    private String addresse;
-    private String telephone;
-    private String email;
-    private Date date_naissance;
-
+	private int idE;
 }

@@ -1,4 +1,4 @@
-package springDataAppdao;
+package springDataApp.dao;
 
 public class Departement {
 
