@@ -21,7 +21,7 @@ public class Administrateur extends Personne{
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idA;
-	
+	private int ktkot;
 	
 	
 
