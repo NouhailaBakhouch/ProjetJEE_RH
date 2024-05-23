@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Entity
-@DiscriminatorValue("employee")
+@DiscriminatorValue("admin")
 @EqualsAndHashCode(callSuper = true)
-public class Employee extends Personne {
+public class Administrateur extends Personne {
     // Pas besoin d'un nouvel ID, il est hérité de Personne
 }
