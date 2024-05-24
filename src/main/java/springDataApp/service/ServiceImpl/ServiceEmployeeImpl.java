@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import springDataApp.dao.entities.Employee;
-import springDataApp.dao.reporistories.IEmpRepo;
+import springDataApp.dao.repositories.IEmpRepo;
 import springDataApp.service.IService.IServiceEmployee;
 
 @Service

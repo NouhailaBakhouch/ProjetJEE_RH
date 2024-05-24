@@ -1,4 +1,4 @@
-package springDataApp.dao.reporistories;
+package springDataApp.dao.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
