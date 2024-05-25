@@ -1,0 +1,30 @@
+/* styles.css */
+
+/* Style pour le titre */
+.display-4 {
+    color: #333; /* Couleur du texte */
+    font-size: 36px; /* Taille de la police */
+    font-weight: bold; /* Gras */
+}
+
+/* Style pour le paragraphe */
+.lead {
+    color: #666; /* Couleur du texte */
+    font-size: 18px; /* Taille de la police */
+}
+
+/* Style pour le bouton */
+.btn-primary {
+    background-color: #007bff; /* Couleur de fond */
+    color: #fff; /* Couleur du texte */
+    border: none; /* Pas de bordure */
+    padding: 10px 20px; /* Rembourrage */
+    font-size: 18px; /* Taille de la police */
+    border-radius: 5px; /* Bordure arrondie */
+    cursor: pointer; /* Curseur pointeur */
+}
+
+/* Style pour la marge supérieure du container */
+.container {
+    margin-top: 50px; /* Marge supérieure */
+}
