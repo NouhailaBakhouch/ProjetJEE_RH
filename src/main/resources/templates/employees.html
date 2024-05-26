@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Gestion des clients</title>
+    <title>Gestion des employés</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- CSS personnalisé -->
@@ -24,8 +24,9 @@
 </head>
 <body>
     <div class="container">
+        <!-- Bouton pour ajouter un employé -->
         <a class="btn btn-primary" th:href="@{/create_employee}">
-            Ajouter un client
+            Ajouter un employee
         </a>
     </div>
     <div class="container">
@@ -36,6 +37,7 @@
                     <th scope="col">Nom</th>
                     <th scope="col">Prénom</th>
                     <th scope="col">Adresse</th>
+                    <th scope="col">Actions</th> <!-- Ajout de cette colonne pour les actions -->
                 </tr>
             </thead>
             <tbody>
@@ -44,6 +46,15 @@
                     <td th:text="${employee.nom}"></td>
                     <td th:text="${employee.prenom}"></td>
                     <td th:text="${employee.adresse}"></td>
+                    <!-- Boutons d'édition et de suppression -->
+                    <td>
+                        <a class="btn btn-info btn-sm" th:href="@{'/edit_employee/' + ${employee.id}}">
+                            Modifier
+                        </a>
+                        <a class="btn btn-danger btn-sm" th:href="@{'/delete_employee/' + ${employee.id}}">
+                            Supprimer
+                        </a>
+                    </td>
                 </tr>
             </tbody>
         </table>

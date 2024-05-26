@@ -1,16 +1,23 @@
 package springDataApp.dao.entities;
 
-import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @Entity
-@DiscriminatorValue("admin")
-@EqualsAndHashCode(callSuper = true)
-public class Admin extends Personne {
-    // Pas besoin d'un nouvel ID, il est hérité de Personne
+public class Admin {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    private String nom;
+    private String prenom;
+    private String adresse;
+
+    // Ajoutez d'autres champs spécifiques à Admin si nécessaire.
 }

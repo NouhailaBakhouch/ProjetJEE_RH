@@ -1,12 +1,10 @@
 package springDataApp.presentation;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import springDataApp.dao.entities.Employee;
 import springDataApp.service.IService.IServiceEmployee;
 
@@ -17,10 +15,11 @@ public class ControllerEmployee {
     @Autowired
     private IServiceEmployee serviceEmployee;
 
-    @PostMapping
-    public String ajouterEmployee(@ModelAttribute Employee e) {
+    @PostMapping("/create_employee")
+    public String ajouterEmployee(@ModelAttribute Employee e, Model model) {
         serviceEmployee.ajouterEmployee(e);
-        return "redirect:/employees";
+        model.addAttribute("message", "L'employé a été ajouté avec succès.");
+        return "redirect:/employees"; // Redirige vers la liste des employés après l'ajout
     }
 
     @DeleteMapping("/{id}")
@@ -51,5 +50,12 @@ public class ControllerEmployee {
         } else {
             return "redirect:/employees";
         }
+    }
+
+    // Méthode pour afficher le formulaire d'ajout d'employé
+    @GetMapping("/create_employee")
+    public String showEmployeeForm(Model model) {
+        model.addAttribute("employee", new Employee());
+        return "employee_form"; // Le nom de votre fichier HTML pour le formulaire d'ajout
     }
 }
