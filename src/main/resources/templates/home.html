@@ -6,6 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="/css/styles.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
 </head>
 <body>
 <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
@@ -35,7 +36,17 @@
         <p class="lead">Cette application vous aide à gérer les employés de votre entreprise.</p>
         <hr class="my-4">
         <p>Cliquez sur le bouton ci-dessous pour voir la liste des employés.</p>
-        <a class="btn btn-primary btn-lg" th:href="@{/employees}" role="button">Voir les employés</a>
+        <div class="d-grid gap-2 col-6 mx-auto mb-3">
+    <a class="btn btn-primary btn-lg" th:href="@{/employees}" role="button">Gérer les employés</a>
+</div>
+<div class="d-grid gap-2 col-6 mx-auto mb-3">
+    <a class="btn btn-primary btn-lg" th:href="@{/employees}" role="button">Gérer les congés</a>
+</div>
+<div class="d-grid gap-2 col-6 mx-auto mb-3">
+    <a class="btn btn-primary btn-lg" th:href="@{/employees}" role="button">Gérer les Rémunérations</a>
+</div>
+
+
     </div>
 </div>
 
