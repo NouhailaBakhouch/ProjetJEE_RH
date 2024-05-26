@@ -1,0 +1,12 @@
+/* styles.css */
+
+/* Style du bouton "Voir les employés" */
+.btn-primary {
+    background-color: #28a745; /* Vert */
+    border-color: #28a745; /* Bordure verte */
+}
+
+/* Style du bouton "S'inscrire" */
+.navbar .btn-primary {
+    margin-left: 10px; /* Espacement à gauche */
+}

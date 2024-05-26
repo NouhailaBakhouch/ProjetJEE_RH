@@ -22,8 +22,12 @@ public class ProjetJeeRhApplication {
 	        @GetMapping("/")
 	        public String home() {
 	            return "home";
+	            
 	        }
+	        @GetMapping("/employees")
+		    public String employeeManagement() {
+		        return "employees"; // Assurez-vous d'avoir une vue correspondante nommée "employees.html"
+		    }
 	    }
 	 
-
 }

@@ -2,22 +2,39 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Gestion de clients</title>
-    <!-- Vous pouvez ajouter ici d'autres balises <link> ou <script> si nécessaire -->
+    <title>Gestion des clients</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- CSS personnalisé -->
+    <style>
+        /* Ajoutez vos styles personnalisés ici */
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        .table {
+            background-color: #fff;
+        }
+        .btn-primary {
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <a class="btn btn-primary" th:href="@{/addForm}">
-            addClient
+        <a class="btn btn-primary" th:href="@{/create_employee}">
+            Ajouter un client
         </a>
     </div>
     <div class="container">
-        <table class="table">
+        <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">id</th>
+                    <th scope="col">ID</th>
                     <th scope="col">Nom</th>
-                    <th scope="col">Prenom</th>
+                    <th scope="col">Prénom</th>
                     <th scope="col">Adresse</th>
                 </tr>
             </thead>
@@ -31,5 +48,8 @@
             </tbody>
         </table>
     </div>
+
+    <!-- Bootstrap JS (si nécessaire) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
