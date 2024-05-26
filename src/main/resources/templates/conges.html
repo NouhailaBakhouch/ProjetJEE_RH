@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Congés</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- CSS personnalisé -->
+    <style>
+        /* Ajoutez vos styles personnalisés ici */
+        body {
+            background-color: #f8f9fa; /* Couleur de fond */
+        }
+        .container {
+            margin-top: 20px;
+        }
+        .table {
+            background-color: #fff; /* Couleur de fond de la table */
+        }
+        .btn-primary {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Liste des Congés</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Date de Début</th>
+                    <th scope="col">Date de Fin</th>
+                    <th scope="col">Type</th>
+                    <!-- Ajoutez d'autres colonnes si nécessaire -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="conge : ${conges}">
+                    <td th:text="${conge.id}"></td>
+                    <td th:text="${conge.dateDebut}"></td>
+                    <td th:text="${conge.dateFin}"></td>
+                    <td th:text="${conge.type}"></td>
+                    <!-- Ajoutez d'autres colonnes si nécessaire -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Bootstrap JS (si nécessaire) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

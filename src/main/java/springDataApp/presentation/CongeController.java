@@ -15,12 +15,6 @@ public class CongeController {
     @Autowired
     private IServiceConge serviceConge;
 
-    @PostMapping
-    public String demanderConge(@ModelAttribute Conge conge) {
-        serviceConge.demanderConge(conge);
-        return "redirect:/conges";
-    }
-
     @GetMapping
     public String listerConges(Model model) {
         List<Conge> conges = serviceConge.listerConges();
@@ -28,12 +22,24 @@ public class CongeController {
         return "conges";
     }
 
+    @GetMapping("/create")
+    public String afficherFormulaireDemandeConge(Model model) {
+        model.addAttribute("conge", new Conge());
+        return "demande_conge_form";
+    }
+
+    @PostMapping("/create")
+    public String soumettreDemandeConge(@ModelAttribute("conge") Conge conge) {
+        serviceConge.demanderConge(conge);
+        return "redirect:/conges";
+    }
+
     @GetMapping("/{id}")
-    public String afficherConge(@PathVariable Integer id, Model model) {
+    public String afficherDetailsConge(@PathVariable Integer id, Model model) {
         Conge conge = serviceConge.rechercherConge(id);
         if (conge != null) {
             model.addAttribute("conge", conge);
-            return "detailsConge";
+            return "details_conge";
         } else {
             return "redirect:/conges";
         }
@@ -45,7 +51,31 @@ public class CongeController {
         return "redirect:/conges";
     }
 
-    @DeleteMapping("/{id}/annuler")
+    @GetMapping("/{id}/edit")
+    public String afficherFormulaireModificationConge(@PathVariable Integer id, Model model) {
+        Conge conge = serviceConge.rechercherConge(id);
+        if (conge != null) {
+            model.addAttribute("conge", conge);
+            return "edit_conge_form";
+        } else {
+            return "redirect:/conges";
+        }
+    }
+
+    @PostMapping("/{id}/edit")
+    public String modifierConge(@PathVariable Integer id, @ModelAttribute("conge") Conge conge) {
+        conge.setId(id);
+        serviceConge.modifierConge(conge);
+        return "redirect:/conges";
+    }
+
+    @PostMapping("/{id}/delete")
+    public String supprimerConge(@PathVariable Integer id) {
+        serviceConge.supprimerConge(id);
+        return "redirect:/conges";
+    }
+
+    @PostMapping("/{id}/annuler")
     public String annulerConge(@PathVariable Integer id) {
         serviceConge.annulerConge(id);
         return "redirect:/conges";
