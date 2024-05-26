@@ -24,5 +24,6 @@ public class ProjetJeeRhApplication {
 	            return "home";
 	        }
 	    }
+	 
 
 }

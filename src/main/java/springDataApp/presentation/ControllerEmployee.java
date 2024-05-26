@@ -3,13 +3,14 @@ package springDataApp.presentation;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import springDataApp.dao.entities.Employee;
 import springDataApp.service.IService.IServiceEmployee;
 
-@RestController
+@Controller
 @RequestMapping("/employees")
 public class ControllerEmployee {
 
@@ -17,36 +18,38 @@ public class ControllerEmployee {
     private IServiceEmployee serviceEmployee;
 
     @PostMapping
-    public ResponseEntity<Employee> ajouterEmployee(@RequestBody Employee e) {
+    public String ajouterEmployee(@ModelAttribute Employee e) {
         serviceEmployee.ajouterEmployee(e);
-        return ResponseEntity.ok(e);
+        return "redirect:/employees";
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> supprimerEmployee(@PathVariable Integer id) {
+    public String supprimerEmployee(@PathVariable Integer id) {
         serviceEmployee.supprimerEmployee(id);
-        return ResponseEntity.noContent().build();
+        return "redirect:/employees";
     }
 
     @PutMapping
-    public ResponseEntity<Employee> modifierEmployee(@RequestBody Employee e) {
+    public String modifierEmployee(@ModelAttribute Employee e) {
         serviceEmployee.modifierEmployee(e);
-        return ResponseEntity.ok(e);
+        return "redirect:/employees";
     }
 
     @GetMapping
-    public ResponseEntity<List<Employee>> listerEmployee() {
+    public String listerEmployee(Model model) {
         List<Employee> employees = serviceEmployee.listerEmployee();
-        return ResponseEntity.ok(employees);
+        model.addAttribute("employees", employees);
+        return "employees";
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Employee> rechercherEmployee(@PathVariable Integer id) {
+    public String rechercherEmployee(@PathVariable Integer id, Model model) {
         Employee employee = serviceEmployee.rechercherEmployee(id);
         if (employee != null) {
-            return ResponseEntity.ok(employee);
+            model.addAttribute("employee", employee);
+            return "employeeDetails";
         } else {
-            return ResponseEntity.notFound().build();
+            return "redirect:/employees";
         }
     }
 }

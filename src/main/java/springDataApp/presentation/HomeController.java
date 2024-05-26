@@ -15,9 +15,8 @@ public class HomeController {
     public String adminHome() {
         return "adminHome";
     }
-
-    @GetMapping("/employee")
-    public String employeeHome() {
-        return "index";
+    @GetMapping("/employees")
+    public String employeeManagement() {
+        return "employees"; // Assurez-vous d'avoir une vue correspondante nommée "employees.html"
     }
 }

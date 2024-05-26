@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion de clients</title>
+    <!-- Vous pouvez ajouter ici d'autres balises <link> ou <script> si nécessaire -->
+</head>
+<body>
+    <div class="container">
+        <a class="btn btn-primary" th:href="@{/addForm}">
+            addClient
+        </a>
+    </div>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prenom</th>
+                    <th scope="col">Adresse</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="employee : ${employees}">
+                    <td th:text="${employee.id}"></td>
+                    <td th:text="${employee.nom}"></td>
+                    <td th:text="${employee.prenom}"></td>
+                    <td th:text="${employee.adresse}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
