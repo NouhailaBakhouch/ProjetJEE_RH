@@ -60,5 +60,23 @@ public class ProjetJeeRhApplication {
             serviceEmployee.supprimerEmployee(id);
             return "redirect:/employees";
         }
+        @GetMapping("/modifierEmployee/{id}")
+        public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
+            Employee employee = null;
+            try {
+                employee = serviceEmployee.rechercherEmployee(id); // Utilisation du service
+            } catch (Exception e) {
+                throw new RuntimeException("Employee not found with id: " + id);
+            }
+            model.addAttribute("employee", employee);
+            return "edit_employee";
+        }
+
+        @PostMapping("/modifierEmployee/{id}")
+        public String updateEmployee(@PathVariable("id") Integer id, @ModelAttribute("employee") Employee employee) {
+            employee.setId(id); // S'assurer que l'ID est défini correctement
+            serviceEmployee.modifierEmployee(employee); // Utilisation du service
+            return "redirect:/employees"; // Redirige vers le tableau de bord après la modification
+        }
     }
 }

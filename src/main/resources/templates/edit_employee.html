@@ -9,7 +9,7 @@
 <body>
 <div class="container mt-5">
     <h1>Modifier un employé</h1>
-    <form th:action="@{/employees/{id}(id=${employee.id})}" th:object="${employee}" method="post">
+    <form th:action="@{/modifierEmployee/{id}(id=${employee.id})}" th:object="${employee}" method="post">
         <div class="mb-3">
             <label for="nom" class="form-label">Nom</label>
             <input type="text" class="form-control" id="nom" th:field="*{nom}">

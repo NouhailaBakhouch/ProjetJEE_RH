@@ -48,7 +48,7 @@
                     <td th:text="${employee.adresse}"></td>
                     <!-- Boutons d'édition et de suppression -->
                     <td>
-                        <a class="btn btn-info btn-sm" th:href="@{'/edit_employee/' + ${employee.id}}">
+                        <a class="btn btn-info btn-sm" th:href="@{'/modifierEmployee/' + ${employee.id}}">
                             Modifier
                         </a>
                          <form th:action="@{'/delete_employee/' + ${employee.id}}" method="post" style="display:inline">
