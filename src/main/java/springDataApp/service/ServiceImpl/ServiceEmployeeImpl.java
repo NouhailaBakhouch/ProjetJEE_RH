@@ -1,5 +1,6 @@
 package springDataApp.service.ServiceImpl;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,4 +42,12 @@ public class ServiceEmployeeImpl implements IServiceEmployee {
         Optional<Employee> optional = employeeRepository.findById(id);
         return optional.orElse(null);
     }
-}
+
+    public List<Employee> rechercherParNom(String nom) {
+        List<Employee> employees = employeeRepository.findByNomContaining(nom);
+        return (employees != null) ? employees : Collections.emptyList();
+    }
+
+    
+	}
+

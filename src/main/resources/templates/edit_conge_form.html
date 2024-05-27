@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifier Congé</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- CSS personnalisé -->
+    <style>
+        /* Ajoutez vos styles personnalisés ici */
+        body {
+            background-color: #e0f2f1; /* Couleur de fond vert clair */
+        }
+        .container {
+            margin-top: 20px;
+        }
+        .btn-primary {
+            background-color: #4caf50; /* Couleur de fond verte */
+            border-color: #4caf50; /* Couleur de la bordure verte */
+            margin-bottom: 20px;
+        }
+        .btn-primary:hover {
+            background-color: #388e3c; /* Couleur de fond verte au survol */
+            border-color: #388e3c; /* Couleur de la bordure verte au survol */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Modifier Congé</h2>
+        <!-- Formulaire de modification de congé -->
+        <form th:action="@{/conges/{id}/edit_conge_form}" th:object="${conge}" method="post">
+            <div class="mb-3">
+                <label for="dateDebut" class="form-label">Date Début</label>
+                <input type="date" th:field="*{dateDebut}" class="form-control" id="dateDebut" required>
+            </div>
+            <div class="mb-3">
+                <label for="dateFin" class="form-label">Date Fin</label>
+                <input type="date" th:field="*{dateFin}" class="form-control" id="dateFin" required>
+            </div>
+            <div class="mb-3">
+                <label for="type" class="form-label">Type</label>
+                <input type="text" th:field="*{type}" class="form-control" id="type" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS (si nécessaire) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

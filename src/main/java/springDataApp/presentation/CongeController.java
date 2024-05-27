@@ -22,7 +22,7 @@ public class CongeController {
         return "conges";
     }
 
-    @GetMapping("/create")
+    @GetMapping("/create_conge")
     public String afficherFormulaireDemandeConge(Model model) {
         model.addAttribute("conge", new Conge());
         return "demande_conge_form";

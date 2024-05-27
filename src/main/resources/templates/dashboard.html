@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="/path/to/your/styles.css">
+</head>
+<body>
+    <!-- Search Form -->
+    <div class="search-container">
+        <form class="search-input" action="/dashboard" method="get">
+            <input class="search-input" type="text" name="Nom" placeholder="Enter employee name" required>
+            <button class="search-button" type="submit">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                </svg>
+            </button>
+        </form>
+    </div>
+
+    <!-- Results Section -->
+    <div class="results-container">
+        <div th:if="${error}">
+            <p th:text="${error}"></p>
+        </div>
+        <div th:if="${Employees}">
+            <ul>
+                <li th:each="employee : ${Employees}">
+                    <span th:text="${employee.nom}"></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

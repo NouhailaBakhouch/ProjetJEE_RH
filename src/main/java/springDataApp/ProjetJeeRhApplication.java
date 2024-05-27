@@ -1,5 +1,6 @@
 package springDataApp;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import springDataApp.dao.entities.Conge;
 import springDataApp.dao.entities.Employee;
@@ -83,18 +85,69 @@ public class ProjetJeeRhApplication {
             serviceEmployee.modifierEmployee(employee); // Utilisation du service
             return "redirect:/employees"; // Redirige vers le tableau de bord après la modification
         }
-        @RequestMapping("/conges")
-        public class CongeController {
-
+     // New search method
+        @GetMapping("/employees/rechercherEmployee")
+        public String searchClientByName(@RequestParam("Nom") String Nom, Model model) {
+            List<Employee> Employees;
+            try {
+                Employees = serviceEmployee.rechercherParNom(Nom); // Utilisation du service pour rechercher par nom
+                if (Employees.isEmpty()) {
+                    model.addAttribute("error", "No Employees found with name: " + Nom);
+                } else {
+                    model.addAttribute("Employees", Employees); // Ajouter les clients trouvés au modèle
+                }
+            } catch (Exception e) {
+                model.addAttribute("error", "An error occurred while searching for Employees: " + e.getMessage());
+                model.addAttribute("Employees", new ArrayList<>()); // Ajouter une liste vide de clients en cas d'erreur
+            }
+            return "employees";
+        }
+        //Conge******************************
             @Autowired
             private IServiceConge serviceConge;
 
-            @GetMapping
+            @GetMapping("/conges")
             public String listerConges(Model model) {
                 List<Conge> conges = serviceConge.listerConges();
                 model.addAttribute("conges", conges);
                 return "conges";
             }
+            @GetMapping("/demande_conge_form")
+            public String afficherFormulaireDemandeConge(Model model) {
+                model.addAttribute("conge", new Conge());
+                List<Employee> employees = serviceEmployee.listerEmployee();
+                model.addAttribute("employees", employees);
+                return "demande_conge_form";
+            }
+            @PostMapping("/ajouterConge")
+            public String ajouterConge(@ModelAttribute Conge conge, @RequestParam("employeeId") Integer employeeId) {
+                Employee employee = serviceEmployee.rechercherEmployee(employeeId);
+                conge.setEmployee(employee);
+
+                // Save 
+                serviceConge.demanderConge(conge);
+
+                return "redirect:/conges";
+            }
+            @GetMapping("/{id}/edit_conge_form")
+            public String afficherFormulaireModificationConge(@PathVariable("id") Integer id, Model model) {
+                Conge conge = serviceConge.rechercherConge(id);
+                if (conge != null) {
+                    model.addAttribute("conge", conge);
+                    return "edit_conge_form";
+                } else {
+                    return "conges";
+                }
+            }
+
+            @PostMapping("/{id}/edit_conge_form")
+            public String modifierConge(@PathVariable("id") Integer id, @ModelAttribute("conge") Conge conge) {
+                conge.setId(id);
+                serviceConge.modifierConge(conge);
+                return "conges";
+            }
+            
+
     }
     }
-}
+

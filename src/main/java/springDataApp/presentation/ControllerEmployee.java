@@ -1,5 +1,6 @@
 package springDataApp.presentation;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,15 +42,22 @@ public class ControllerEmployee {
         return "employees";
     }
 
-    @GetMapping("/{id}")
-    public String rechercherEmployee(@PathVariable Integer id, Model model) {
-        Employee employee = serviceEmployee.rechercherEmployee(id);
-        if (employee != null) {
-            model.addAttribute("employee", employee);
-            return "employeeDetails";
-        } else {
-            return "redirect:/employees";
+    //New search method
+    @GetMapping("/employees/rechercherEmployee")
+    public String searchClientByName(@RequestParam("Nom") String Nom, Model model) {
+        List<Employee> Employees;
+        try {
+            Employees = serviceEmployee.rechercherParNom(Nom); // Utilisation du service pour rechercher par nom
+            if (Employees.isEmpty()) {
+                model.addAttribute("error", "No Employees found with name: " + Nom);
+            } else {
+                model.addAttribute("Employees", Employees); // Ajouter les clients trouvés au modèle
+            }
+        } catch (Exception e) {
+            model.addAttribute("error", "An error occurred while searching for Employees: " + e.getMessage());
+            model.addAttribute("Employees", new ArrayList<>()); // Ajouter une liste vide de clients en cas d'erreur
         }
+        return "dashboard";
     }
 
     // Méthode pour afficher le formulaire d'ajout d'employé

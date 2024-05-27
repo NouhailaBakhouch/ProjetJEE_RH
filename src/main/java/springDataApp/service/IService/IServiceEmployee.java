@@ -10,4 +10,6 @@ public interface IServiceEmployee {
     public void modifierEmployee(Employee e);
     public List<Employee> listerEmployee();
     public Employee rechercherEmployee(Integer id);
+    List<Employee> rechercherParNom(String nom);
+    
 }
