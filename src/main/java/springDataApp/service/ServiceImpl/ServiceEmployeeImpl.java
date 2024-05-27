@@ -43,11 +43,11 @@ public class ServiceEmployeeImpl implements IServiceEmployee {
         return optional.orElse(null);
     }
 
+    @Override
     public List<Employee> rechercherParNom(String nom) {
         List<Employee> employees = employeeRepository.findByNomContaining(nom);
         return (employees != null) ? employees : Collections.emptyList();
     }
-
     
 	}
 

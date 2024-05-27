@@ -88,17 +88,17 @@ public class ProjetJeeRhApplication {
      // New search method
         @GetMapping("/employees/rechercherEmployee")
         public String searchClientByName(@RequestParam("Nom") String Nom, Model model) {
-            List<Employee> Employees;
+            List<Employee> employees;
             try {
-                Employees = serviceEmployee.rechercherParNom(Nom); // Utilisation du service pour rechercher par nom
-                if (Employees.isEmpty()) {
+                employees = serviceEmployee.rechercherParNom(Nom); // Utilisation du service pour rechercher par nom
+                if (employees.isEmpty()) {
                     model.addAttribute("error", "No Employees found with name: " + Nom);
                 } else {
-                    model.addAttribute("Employees", Employees); // Ajouter les clients trouvés au modèle
+                	model.addAttribute("employees", employees);// Ajouter les clients trouvés au modèle
                 }
             } catch (Exception e) {
                 model.addAttribute("error", "An error occurred while searching for Employees: " + e.getMessage());
-                model.addAttribute("Employees", new ArrayList<>()); // Ajouter une liste vide de clients en cas d'erreur
+                model.addAttribute("employees", new ArrayList<>()); // Ajouter une liste vide de clients en cas d'erreur
             }
             return "employees";
         }
