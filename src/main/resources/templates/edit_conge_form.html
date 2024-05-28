@@ -29,7 +29,10 @@
     <div class="container">
         <h2>Modifier Congé</h2>
         <!-- Formulaire de modification de congé -->
-        <form th:action="@{/conges/{id}/edit_conge_form}" th:object="${conge}" method="post">
+        <form th:action="@{'/conges/' + ${conge.id} + '/edit_conge_form'}" th:object="${conge}" method="post">
+
+
+
             <div class="mb-3">
                 <label for="dateDebut" class="form-label">Date Début</label>
                 <input type="date" th:field="*{dateDebut}" class="form-control" id="dateDebut" required>

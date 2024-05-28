@@ -144,8 +144,27 @@ public class ProjetJeeRhApplication {
             public String modifierConge(@PathVariable("id") Integer id, @ModelAttribute("conge") Conge conge) {
                 conge.setId(id);
                 serviceConge.modifierConge(conge);
-                return "conges";
+                return "redirect:/conges"; // ou toute autre URL de redirection appropriée
             }
+
+
+            @GetMapping("/{id}/delete_conge_form")
+            public String afficherFormulaireSuppressionConge(@PathVariable("id") Integer id, Model model) {
+                Conge conge = serviceConge.rechercherConge(id);
+                if (conge != null) {
+                    model.addAttribute("conge", conge);
+                    return "delete_conge_form";
+                } else {
+                    return "conges";
+                }
+            }
+
+            @PostMapping("/{id}/delete_conge")
+            public String supprimerConge(@PathVariable("id") Integer id) {
+                serviceConge.supprimerConge(id);
+                return "redirect:/conges";
+            }
+
             
 
     }

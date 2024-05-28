@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Supprimer Congé</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- CSS personnalisé -->
+    <style>
+        /* Ajoutez vos styles personnalisés ici */
+        body {
+            background-color: #e0f2f1; /* Couleur de fond vert clair */
+        }
+        .container {
+            margin-top: 20px;
+        }
+        .btn-danger {
+            background-color: #e57373; /* Couleur de fond rouge pâle */
+            border-color: #e57373; /* Couleur de la bordure rouge pâle */
+        }
+        .btn-danger:hover {
+            background-color: #d32f2f; /* Couleur de fond rouge au survol */
+            border-color: #d32f2f; /* Couleur de la bordure rouge au survol */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Supprimer Congé</h2>
+        <p>Êtes-vous sûr de vouloir supprimer ce congé ? Cette action est irréversible.</p>
+        <!-- Formulaire de suppression de congé -->
+        <form th:action="@{/conges/{id}/delete_conge}" th:object="${conge}" method="post">
+            <button type="submit" class="btn btn-danger">Confirmer la suppression</button>
+            <a href="/conges" class="btn btn-secondary">Annuler</a>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS (si nécessaire) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
