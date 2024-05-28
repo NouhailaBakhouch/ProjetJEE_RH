@@ -21,8 +21,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import springDataApp.dao.entities.Conge;
 import springDataApp.dao.entities.Employee;
+import springDataApp.dao.entities.Performance;
 import springDataApp.service.IService.IServiceConge;
 import springDataApp.service.IService.IServiceEmployee;
+import springDataApp.service.IService.PerformanceService;
 
 @SpringBootApplication
 @EntityScan(basePackages = "springDataApp.dao.entities")
@@ -165,7 +167,21 @@ public class ProjetJeeRhApplication {
                 return "redirect:/conges";
             }
 
-            
+            // Performance 
+            @Autowired
+            private PerformanceService performanceService;
+
+            @GetMapping("/add")
+            public String showAddPerformanceForm(Model model) {
+                model.addAttribute("performance", new Performance());
+                return "performances/add";
+            }
+
+            @PostMapping("/add")
+            public String addPerformance(@ModelAttribute("performance") Performance performance) {
+                performanceService.addPerformance(performance);
+                return "redirect:/performances/";
+            }
 
     }
     }

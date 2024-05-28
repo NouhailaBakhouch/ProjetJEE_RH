@@ -3,54 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <title>Gestion des Ressources Humaines</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/styles.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
+    <style>
+        body {
+            background-color: #f8f9fa; /* Couleur de fond douce */
+        }
+        .navbar {
+            background-color: #4caf50; /* Couleur de fond verte */
+        }
+        .navbar-brand, .navbar-nav .nav-link {
+            color: white !important;
+        }
+        .content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 56px); /* Hauteur totale moins la hauteur de la navbar */
+        }
+        .text-content {
+            text-align: center;
+            color: black;
+            font-size: 1.5em; /* Augmentez la taille du texte si nécessaire */
+            font-weight: bold; /* Texte en gras */
+        }
+        .image-content img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+<nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    
+   
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link active" href="#">Home
-            <span class="visually-hidden">(current)</span>
-          </a>
-        </li>
         
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/employees}">Employees</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/conges}">Congés</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/horaires}">Rémunérations</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/performances}">Performances</a>
+        </li>
       </ul>
-      <!-- Bouton "S'inscrire" à côté de la barre de recherche -->
-      <a class="btn btn-primary my-2 my-sm-0" th:href="@{/login}" role="button">S'inscrire</a>
+      <a class="btn btn-primary" th:href="@{/login}" role="button">S'inscrire</a>
     </div>
   </div>
 </nav>
 
-<div class="container mt-5">
-    <div class="jumbotron text-center">
-        <h1 class="display-4">Bienvenue à la Gestion des Ressources Humaines</h1>
-        <p class="lead">Cette application vous aide à gérer les employés de votre entreprise.</p>
-        <hr class="my-4">
-        <p>Cliquez sur le bouton ci-dessous pour voir la liste des employés.</p>
-        <div class="d-grid gap-2 col-6 mx-auto mb-3">
-    <a class="btn btn-primary btn-lg" th:href="@{/employees}" role="button">Gérer les employés</a>
-</div>
-<div class="d-grid gap-2 col-6 mx-auto mb-3">
-    <a class="btn btn-primary btn-lg" th:href="@{/conges}" role="button">Gérer les congés</a>
-</div>
-<div class="d-grid gap-2 col-6 mx-auto mb-3">
-    <a class="btn btn-primary btn-lg" th:href="@{/horaires}" role="button">Gérer les Rémunérations</a>
-</div>
-<div class="d-grid gap-2 col-6 mx-auto mb-3">
-    <a class="btn btn-primary btn-lg" th:href="@{/horaires}" role="button">Gérer les horaires</a>
-</div>
-
+<div class="container content">
+    <div class="image-content">
+        <img src="/img/background.jpg" alt="Image illustrative">
+    </div>
+    <div class="text-content">
+        <h1 class="display-4">Bienvenue à votre espace RH</h1>
+        <p class="lead">Votre plateforme pour gérer efficacement les employés, les congés, les rémunérations et les performances.</p>
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
